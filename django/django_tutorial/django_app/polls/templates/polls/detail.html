@@ -1,0 +1,14 @@
+<h1>{{ question.question_text }}</h1>
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form action="{% url 'vote' question.id %}" method="post">
+<!-- 이름 인자를 polls.urls.py의 url()에서 정의했기 때문에, -->
+<!-- \{\%  url \%\} 템플릿 태그를 사용함으로써 url 설정에 정의된 특정한 URL 경로에 대한 의존을 제거할 수 있다. -->
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>
