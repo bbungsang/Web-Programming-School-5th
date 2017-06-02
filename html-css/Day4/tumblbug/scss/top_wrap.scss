@@ -1,0 +1,38 @@
+@import 'variables';
+$top-menu-height: 60px;
+
+nav.b-nav-global {
+  padding: 0, 10px;
+  height: $top-menu-height;
+  background: $background_white;
+  color: $font_color;
+  font-family: $font_family;
+  font-size: $font_size;
+
+  ul {
+    li {
+      height: $top-menu-height;
+      line-height: $top-menu-height;
+      float: left;
+
+      a {
+        display: inline-block;
+        height: $top-menu-height;
+        padding: 0 10px;
+        box-sizing: border-box;
+        transition: 120ms;
+
+      img {
+          vertical-align: middle;
+        }
+      }
+
+      &.elements {
+        a:hover {
+          color: rgb(250, 100, 98);
+          border-bottom: 2px solid rgb(250, 100, 98);
+        }
+      }
+    }
+  }
+}
