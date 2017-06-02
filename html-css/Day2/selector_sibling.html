@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Selector Sibling</title>
+  <style>
+    /*
+    h1 + ul {
+      background-color: Azure;
+      color: DarkBlue;
+    }
+    */
+
+    h3 ~ ul {
+      background-color: Azure;
+      color: DarkBlue;
+    }
+
+    input[type="text"] {
+      color: blue;
+    }
+
+    /*a {
+      text-decoration: None;
+      color: blue;
+    }
+
+    a[href] {
+      color: red;
+    }*/
+
+    a:link {
+      color: yellow;
+    }
+
+    a:visited {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <ul>
+      <li>아구몬</li>
+      <li>파닥몬</li>
+    </ul>
+    <h1>Hello world!</h1>
+    <ul>
+      <li>피카츄</li>
+      <li>라이츄</li>
+    </ul>
+  </section>
+
+  <div>
+    <h3>Hi Digimon!</h3>
+    <ul>
+      <li>파이리</li>
+      <li>꼬부기</li>
+    </ul>
+  </div>
+
+  <input type="text">
+  <input type="password"><br><br>
+
+  <a href="#">Naver</a>
+  <a href="#">Google</a>
+</body>
+</html>

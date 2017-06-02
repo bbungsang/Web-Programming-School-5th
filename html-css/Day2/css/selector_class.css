@@ -1,0 +1,17 @@
+.selection {
+  color:#333;
+  /* mb40 */
+  margin-bottom: 40px;
+}
+
+p.section.title {
+  /* fz18 */
+  font-size: 18px;
+}
+
+p.section-content {
+  font-size: 13px;
+  /* lh13 */
+  line-height: 13px;
+  color: #999;
+}

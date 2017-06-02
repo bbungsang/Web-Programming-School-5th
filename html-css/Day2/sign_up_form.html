@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sign Up Form</title>
+</head>
+<body>
+  <form action="">
+    <fieldset>
+      <legend><b>기본정보</b></legend>
+      <div>
+        <label for="id"><b>ID : </b><input type="text" placeholder="아이디를 입력하세요" id="id" name="id"></label>
+      </div>
+      <div>
+        <label for="pwd"><b>비밀번호 : </b><input type="password" placeholder="비밀번호를 입력하세요" id="pwd" name="pwd"></label>
+      </div>
+      <div>
+        <label for="email"><b>이메일 : </b><input type="email" id="email" name="email"></label>
+      </div>
+      <div>
+        <label for="gender">
+          <b>성별 : </b>
+          <select id="gender" name="gender">
+            <option value="m">남성</option>
+            <option value="f">여성</option>
+          </select>
+      </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><b>선택입력</b></legend>
+      <div>
+        <label for="age"><b>나이 : </b><input type="number" min="1" max="150" id="age" name="age"></label>
+      </div>
+      <div>
+        <label for="address"><b>주소 : </b><input type="text" id="address" name="address"></label>
+      </div>
+      <div>
+        <label for="intro">
+          <b>자기소개 : </b><textarea cols="30" rows="10" placeholder="자기소개" id="intro" name="intro"></textarea>
+        </label>
+      </div>
+    </fieldset>
+    <button type="submit">회원가입</button>
+  </form>
+</body>
+</html>

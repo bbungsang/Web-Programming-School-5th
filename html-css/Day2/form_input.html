@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Form Input</title>
+</head>
+<body>
+  <h3>Input Tags</h3>
+  <form action="">
+    <input type="text" id="username" /><br>
+    <input type="password" id="password" /><br>
+    <input type="radio" id="radio" /><br>
+    <input type="checkbox" id="checkbox" /><br>
+    <input type="button" id="button" value="버튼" /><br>
+    <input type="file" id="file" value="첨부파일" /><br>
+    <input type="submit" value="제출" /><br>
+    <input type="reset" value="초기화" /><br>
+    <input type="hidden" id="hidden" value="hiddenValue" /><br>
+  </form>
+
+  <h3>Radio Button</h3>
+  <form action="">
+    <input type="radio" name="radio-name" value="a">
+    <input type="radio" name="radio-name" value="b">
+    <input type="submit" value="전송">
+  </form>
+
+  <!-- 값 영역 활성화 -->
+  <h3>Label</h3>
+  <form action="">
+  <div>
+    <label>ID <input type="text"></label>
+  </div>
+  <div>
+    <label for="username">Username</label>
+    <input type="text" id="username">
+  </div>
+  </form>
+
+  <h3>Select</h3>
+  <!-- select[name="number"]>option[value=$]*4 -->
+  <select name="number" id="">
+    <option value="1">First</option>
+    <option value="2">Second</option>
+    <option value="3">Third</option>
+    <option value="4">Forth</option>
+  </select>
+
+  <select name="" id="">
+    <opgroup label="Fruits">
+      <option value="apple">Apple</option>
+      <option value="banana">Banana</option>
+      <option value="orange">Orange</option>
+    </opgroup>
+    <opgroup label="Colors">
+      <option value="red">Red</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+    </opgroup>
+  </select>
+
+  <h3>Botton</h3>
+  <button type="submit">전송</button>
+  <button type="reset">초기화</button>
+  <button type="button">버튼</button>
+
+  <h3>Fieldset</h3>
+  <fieldset>
+    <legend>Logtin</legend>
+    <label for="">username : <input type="text"></label>
+    <label for="">password : <input type="password"></label>
+  </fieldset>
+</body>
+</html>

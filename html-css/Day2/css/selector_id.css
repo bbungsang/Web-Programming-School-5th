@@ -1,0 +1,13 @@
+body {
+  background: silver;
+}
+
+#index-title {
+  font-style: 20px;
+  font-weight: bold;
+  color: pink;
+}
+
+#idex-descrption {
+  color: #999;
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Table</title>
+  <style>
+    table {
+      width: 350px;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #666;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- table>(tr>(th*3))+(tr>(td*3))*2 -->
+  <table>
+    <tr>
+      <th>이름</th>
+      <th>나이</th>
+      <th>점수</th>
+    </tr>
+    <tr>
+      <td>철수</td>
+      <td>23세</td>
+      <td>70점</td>
+    </tr>
+    <tr>
+      <td>영희</td>
+      <td>21세</td>
+      <td>89점</td>
+    </tr>
+    <tr>
+      <td colspan="2">평균</td>
+      <td>79.5점</td>
+    </tr>
+  </table><br>
+
+  <!-- table>(tr>td[rowspan="3"]+td)+(tr>td)*2 -->
+  <table>
+    <tr>
+      <td rowspan="3">a</td>
+      <td>b</td>
+    </tr>
+    <tr>
+      <td>c</td>
+    </tr>
+    <tr>
+      <td>d</td>
+    </tr>
+  </table>
+
+  <!-- 행의 구조화 -->
+  <!-- table>thead>tr>th*5 -->
+  <h3>thead, tbody, tfoot</h3>
+  <table>
+    <thead>
+      <tr>
+        <td colspan="5">주인공 스탯 정보</td>
+      </tr>
+    </thead>
+  </table>
+
+  <!-- table>(tbody>tr>td*5)*2 -->
+  <table>
+    <tbody>
+      <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>성적</th>
+        <th>메모</th>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>22세</td>
+        <td>남자</td>
+        <td>98점</td>
+        <td>잘생김</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr>
+        <td>김춘향</td>
+        <td>19세</td>
+        <td>여자</td>
+        <td>99점</td>
+        <td>예쁨</td>
+      </tr>
+      <tr>
+        <td colspan="3">평균</td>
+        <td colspan="2">87</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- table>tfoot>tr>td[colspan='3']+td*2 -->
+  <table>
+    <tfoot>
+      <tr>
+        <td colspan="5">Copyright @..</td>
+      </tr>
+    </tfoot>
+  </table><br>
+  <!-- table>thead>(tr>td[colspan='9']{포켓몬스터의 전설의 포켓몬})+(tr>th{지방})+(tr>th[colspan='2']{메인 전설의 포켓몬})+(tr>th[colspan='6']{그 외 전설의 포켓몬}) -->
+  <table>
+    <thead>
+        <td colspan="9">포켓몬스터의 전설의 포켓몬</td>
+        <tr>
+    </thead>
+  </tr>
+  </table>
+
+  <table>
+      <th>지방</th>
+      <tr>
+      <th colspan="2">메인 전설의 포켓몬</th>
+      <th colspan="6">그 외 전설의 포켓몬</th>
+      <th>관동지방</th>
+    </tr>
+    <tr>
+      <th colspan="2">뮤츠</th>
+      <th colspan="2">프리져</th>
+      <th colspan="2">썬더</th>
+      <th colspan="2">파이어</th>
+      <td>성도지방</td>
+    </tr>
+    <tr>
+      <td>칠색조</td>
+      <td>루기아</td>
+      <td colspan="2">라이코</td>
+      <td colspan="2">엔테이</td>
+      <td colspan="2">스이쿤</td>
+      <td rowspan="2">호연지방</td>
+    </tr>
+    <tr>
+      <td>그란돈</td>
+      <td>가이오가</td>
+      <td colspan="2">레지락</td>
+      <td colspan="2">레지아이스</td>
+      <td colspan="2">레지스틸</td>
+      <td colspan="2">레쿠쟈</td>
+    </tr>
+    <tr>
+      <td colspan="2">라티아스</td>
+      <td colspan="2">라티오스</td>
+      <td colspan="2">테오키스</td>
+    </tr>
+    <tr>
+      <td rowspan="2">칼로스지방</td>
+      <td>제르네아스</td>
+      <td>이벨타르</td>
+      <td colspan="6" rowspan="2"></td>
+    </tr>
+    <tr>
+      <td colspan="2">지가르네</td>
+    </tr>
+    <tr>
+      <td rowspan="3">알로라지방</td>
+      <td>코르모그</td>
+      <td>코스모움</td>
+      <td colspan="3">카푸꼬꼬꼭</td>
+      <td colspan="3">카푸나비나</td>
+    </tr>
+    <tr>
+      <td>솔가레오</td>
+      <td>루나아라</td>
+      <td colspan="3">카푸브루루</td>
+      <td colspan="3">카푸느지느</td>
+    </tr>
+    <tr>
+      <td colspan="2">네크로즈마</td>
+      <td colspan="3">실버디</td>
+      <td colspan="3">울트라비스트</td>
+    </tr>
+  </table>
+</body>
+</html>
