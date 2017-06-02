@@ -1,14 +1,37 @@
-<h1>{{ question.question_text }}</h1>
-{% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-{% endif %}
-<form action="{% url 'vote' question.id %}" method="post">
-<!-- 이름 인자를 polls.urls.py의 url()에서 정의했기 때문에, -->
-<!-- \{\%  url \%\} 템플릿 태그를 사용함으로써 url 설정에 정의된 특정한 URL 경로에 대한 의존을 제거할 수 있다. -->
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-{% endfor %}
-<input type="submit" value="Vote" />
-</form>
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Polls detail</title>
+</head>
+<body>
+    <h1>{{ question.question_text }}</h1>
+    <!--{% if error_message %}-->
+        <!--<p><strong>{{ error_message }}</strong></p>-->
+    <!--{% endif %}-->
+    {% if messages %}
+        <p><strong>{{ messages }}</strong></p>
+    {% endif %}
+
+    <h3><현재 득표 현황></h3>
+    <ul>
+    {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }} -- {{ choice.votes }}</li>
+    {% endfor %}
+    </ul>
+
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+    <!-- 이름 인자를 polls.urls.py의 url()에서 정의했기 때문에, -->
+    <!-- \{\%  url \%\} 템플릿 태그를 사용함으로써 url 설정에 정의된 특정한 URL 경로에 대한 의존을 제거할 수 있다. -->
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+    {% endfor %}
+    <button type="submit">Vote</button>
+    </form>
+</body>
+</html>
