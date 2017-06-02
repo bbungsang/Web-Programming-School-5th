@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Float Layout</title>
+  <style>
+    .float-frame {
+      width: 300px;
+      background-color: #eee;
+      border: 1px solid #ddd;
+      padding: 10px;
+      /*2. overflow 사용*/
+      overflow: auto;
+      overflow: hidden;
+      /*overflow: visible 때는 인식하지 못하던 float 요소와 자식 요소의 margin 값을 인식하게 됨*/
+    }
+
+    .float-unit {
+      width: 50px;
+      background: #333;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      padding: 15px 0;
+      margin-right: 5px;
+      /*1. float 속성 추가 : 항목들은 잘 배열되지만, 부모 요소의 height가 인식되지 않음*/
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="float-frame">
+    <div class="float-unit">A</div>
+    <div class="float-unit">B</div>
+    <div class="float-unit">C</div>
+    <div class="float-unit">D</div>
+  </div>
+</body>
+</html>

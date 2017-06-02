@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>White Space</title>
+  <style>
+    /*줄 바꿈이 없음*/
+    .nowrap {
+      white-space: nowrap;
+    }
+    /*줄바꿈, 띄어쓰기, 공백 등 모든 것을 보여주며, 박스를 벗어나도 줄 바꿈이 일어나지 않음*/
+    .pre {
+      white-space: pre;
+    }
+    /*줄 바꿈만 보여주며, 띄어쓰기는 무시, 자동으로 줄 바꿈*/
+    .pre-line {
+      white-space: pre-line;
+    }
+    /*줄 바꿈과 띄어쓰기를 모두 보여주며 자동으로 줄 바꿈*/
+    .pre-wrap {
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p class="nowrap">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, dignissimos.</p>
+    <p class="pre">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, quos!</p>
+    <p class="pre-line">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, at.</p>
+    <p class="pre-wrap">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, perspiciatis.</p>
+  </div>
+</body>
+</html>
