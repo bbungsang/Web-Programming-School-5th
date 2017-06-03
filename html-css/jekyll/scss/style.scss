@@ -1,0 +1,97 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+.container {
+  width: 100%;
+  overflow:hidden;
+  display:inline-block;
+
+  .side-bar {
+      background:#74AFAD;
+      position:absolute;
+      height:100%;
+      width:240px;
+      color:#fff;
+      transition: margin-left 0.5s;
+
+    ul {
+        list-style:none;
+        padding:0px;
+
+      li.menu-head {
+          font-family: 'Lato', sans-serif;
+          font-size: 16px;
+          padding:20px;
+          height: 200px;
+
+        a {
+          color: #fff;
+          text-decoration: none;
+          height: 50px;
+        }
+      }
+
+      .menu-head  a {
+        color: #fff;
+        text-decoration: none;
+        height: 50px;
+      }
+
+      .menu li  {
+        a {
+          font-size: 18px;
+          color: #fff;
+          text-decoration: none;
+          display: inline-table;
+          width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+
+        a:hover {
+            border-left: 3px solid #ECECEA;
+            padding-left: 17px;
+        }
+
+        a.active {
+            padding-left:18px;
+            background:#D9853B;
+            border-left:3px solid #ECECEA;
+        }
+
+        a.active:before {
+          content:"";
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-top: 20px solid transparent;
+          border-bottom: 20px solid transparent;
+
+        	border-left: 7px solid #D9853B;
+          margin-top: -10px;
+          margin-left: 180px;
+        }
+      }
+    }
+  }
+
+
+  .content
+  {
+      padding-left: 235px;
+      transition: padding-left 0.5s;
+  }
+
+  .active > .side-bar
+  {
+      margin-left:-190px;
+      transition: margin-left 0.5s;
+  }
+
+  .active > .content
+  {
+      padding-left:50px;
+      transition: padding-left 0.5s;
+  }
+}

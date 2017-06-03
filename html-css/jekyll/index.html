@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $(".push_menu").click(function(){
+           $(".wrapper").toggleClass("active");
+      });
+    });
+  </script>
+  <title>Index</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <!-- 사이드바 이동하도록 해줌 -->
+      <div class="wrapper">
+        <div class="side-bar">
+          <ul>
+            <li class="menu-head">
+                뿡상의 개발새발 공책
+                <a href="#" class="push_menu"><span class="glyphicon glyphicon-align-justify pull-right"></span></a>
+            </li>
+            <div class="menu">
+              <li>
+                <a href="#">
+                  Python
+                  <span class="glyphicon glyphicon-dashboard pull-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">Django
+                  <span class="glyphicon glyphicon-star pull-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">Algorithm
+                  <span class="glyphicon glyphicon-cog pull-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="active">
+                  Love snippet
+                  <span class="glyphicon glyphicon-heart pull-right"></span>
+                </a>
+              </li>
+            </div>
+          </ul>
+        </div>
+
+        <div class="content">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Panel heading without title</div>
+                    <div class="panel-body">
+                        Panel content
+                    </div>
+                </div>
+            </div>
+        </div>
+  		</div>
+  	</div>
+  </div>
+
+</body>
+</html>
