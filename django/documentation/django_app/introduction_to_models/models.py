@@ -7,6 +7,7 @@ class Person(models.Model):
         ('L', 'Large'),
 
     )
+
     PERSON_TYPES = (
         ('student', '학생'),
         ('teacher', '선생'),
@@ -33,11 +34,38 @@ class Person(models.Model):
     )
 
 
+class Fruit(models.Model):
+  name = models.CharField(max_length=100, primary_key=True)
+
+
+class Poll(models.Model):
+    pass
+
+class Site(models.Model):
+    pass
+
+class Place(models.Model):
+    pass
+
+poll = models.ForeignKey(
+    Poll,
+    on_delete=models.CASCADE,
+    verbose_name="the related poll",
+)
+sites = models.ManyToManyField(Site, verbose_name="list of sites")
+place = models.OneToOneField(
+    Place,
+    on_delete=models.CASCADE,
+    verbose_name="related place",
+)
+
+
 class Manufacturer(models.Model):
     name = models.CharField(max_length=30)
 
     def __str__(self):
         return self.name
+
 
 class Car(models.Model):
     name = models.CharField(max_length=40)
