@@ -64,7 +64,21 @@
 
 <br>
 #### 딕셔너리 컴프리헨션
+- 딕셔너리 형태로 값을 반환받는 것을 제외하고 리스트 컴프리헨션과 거의 흡사하다.
+
 > {키표현식 : 값표현식 for 항목 in 순회 가능한 객체}
 
+```python
+>>> word = 'letters'
+>>> letter_counts = {letter: word.count(letter) for letter in word}
+>>> letter_counts
+{'l': 1, 'e' : 2, 't' : 2, 'r' : 1, 's' : 1}
+```
+- 첫 번째 letter 변수는 Key로서 for문으로부터 순차적으로 문자열을 받는다.
+- word.count(letter) 는 Value로서 첫 번째 letter 변수에서 받은 문자열을 세어 정수로 반환한다.
+- 하지만 이 방식으로 문자열을 셀 경우, 'e'와 't'는 두 번씩 순회하며 세기 때문에 시간 낭비를 초래할 수 있다.
+- `{letter: word.count(letter) for letter in set(word)}` 면 시간 낭비를 줄이고 조금 더 파이써닉하게 처리할 수 있다.
+
+<br><br>
 #### *결론*
 - 컴프리헨션은 이전 예제보다 간단하지 않지만, 더 많은 것을 간단한 원리로 표현할 수 있도록 해준다.
