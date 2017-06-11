@@ -1,0 +1,1 @@
+from .mixin import User, Post, Comment, PostLike, Tag

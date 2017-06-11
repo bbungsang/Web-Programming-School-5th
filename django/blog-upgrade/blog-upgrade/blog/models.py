@@ -2,6 +2,9 @@ import re
 from django.forms import ValidationError
 from django.db import models
 
+from django.contrib.contenttypes.models import contenttype
+from django.contrib.contenttypes.fields import GenericForeignKey
+
 def lnglat_validator(value):
     if not re.match(r'^([+-]?\d+\.?\d*),([+-]?\d+\.?\d*)$', value):
         raise ValidationError('Invalid LngLat Type')
@@ -30,3 +33,14 @@ class Comment(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class LikeDislike(models.Model):
+    LIKE = 1
+    DISLIKE = -1
+
+    VOTES = (
+        (LIKE, 'Like')
+        (DISLIKE, 'Dislike')
+    )
+
+    vote = models.SmallIntegerField(verbose_name=())

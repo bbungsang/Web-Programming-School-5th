@@ -1,8 +1,8 @@
 from django.db import models
 
-class TimeStampeMixin(models.Model):
-    created_date = models.DateTimeField()
-    modified_date = models.DateTimeField()
+class TimeStampedMixin(models.Model):
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
