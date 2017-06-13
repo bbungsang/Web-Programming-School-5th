@@ -1,0 +1,66 @@
+.container {
+
+  .top-wrap {
+    width: 100%;
+    height: 55px;
+    background: #A465FD;
+
+    .title {
+      color: #fff;
+      font-family: 'Lobster';
+      font-size: 32px;
+      text-align: center;
+      padding-top: 10px;
+    }
+  }
+
+  .content {
+    width: 100%;
+    height: auto;
+
+    .article {
+      width: 350px;
+      height: auto;
+      float: left;
+
+      li {
+        list-style: none;
+
+        .photo {
+          width: 350px;
+          height: auto;
+          float: left;
+
+          img {
+            width: 350px;
+            padding-top: 10px;
+            float: left;
+          }
+        }
+
+        .photo-info {
+          width: 350px;
+          text-align: center;
+          float: left;
+        }
+      }
+    }
+
+    .post {
+      width: 100%;
+
+      .img-wrap {
+        width: 700px;
+        margin: 0 auto;
+
+        img {
+          width: 700px
+        }
+      }
+
+      .comment {
+
+      }
+    }
+  }
+}

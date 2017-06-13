@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="ko">
+<head>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!--<div class="wrapper">-->
+            <!---->
+        <!--</div>-->
+        <div class="top-wrap">
+            <div class="title">
+                Palette
+            </div>
+        </div>
+        <div class="content">
+          {% block content %}
+          {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

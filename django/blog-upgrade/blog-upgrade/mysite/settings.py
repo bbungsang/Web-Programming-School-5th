@@ -28,9 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# Custom User
+AUTH_USER_MODEL = 'member.User'
+
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'blog',
+    'member',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +130,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     STATIC_DIR,
 )
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
