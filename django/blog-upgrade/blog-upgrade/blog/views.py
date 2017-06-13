@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.http import HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 
@@ -21,7 +22,17 @@ def post_detail(request, post_pk):
 
     # 모델(데이터베이스)에서 post_pk에 해당하는 Post 객체를 가져와 post 변수에 할당
     # get() 결과가 1개일 때만, 따라서 단 한 개의 Post 객체를 가져와야 하므로 get()을 사용
-    post = get_object_or_404(Post, pk=post_pk)
+
+    # 가져오는 과정에서 예외처리를 한다 (Model.DoesNotExist)
+    try:
+        post = get_object_or_404(Post, pk=post_pk)
+    except Post.DoesNotExist as e:
+        # 1. 404 Not found 를 띄어줌
+        # return HttpResponseNotFound('Post not found, detail: {}'.format(e))
+
+        # 2. redirect() 사용
+        # post_list view 로 돌아감
+        return redirect('post:post_list')
 
     # request에 대해 response를 돌려줄 때는 HttpResponse나 render를 사용
     # template를 사용하려면 render()를 사용한다.
@@ -42,6 +53,9 @@ def post_detail(request, post_pk):
     # 변환된 string을 HttpResponse() 인자로 돌려준다.
     return HttpResponse(rendered_string)
 
+    # HttpResponse(string)
+    # redirect(어디로 갈지에 대한 url)
+
 
 def post_create(request):
     if request.method == "POST":
@@ -50,16 +64,29 @@ def post_create(request):
             post = form.save(commit=False)
             post.save()
             return redirect('post_detail', pk=post.pk)
+            # 이 처럼 뷰 이름과 인자를 넘겨주면 알아서 reverse() 실행
     else:
         form = PostForm()
 
     return render(request, 'blog/post_create.html', {'form': form})
 
-def post_edit():
-    pass
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'blog/post_create.html', {'form': form})
 
-def post_delete():
-    pass
+def post_delete(request, pk):
+    item = Post.objects.get(id=pk)
+    item.delete()
+    return redirect('post_list',)
 
 def comment_list():
     pass
