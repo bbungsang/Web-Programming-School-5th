@@ -10,9 +10,9 @@ urlpatterns = [ # 'urlpatterns' 변수에서만 장고가 url을 탐색함
 
     url(r'^create/$', views.post_create, name='post_create'), # 새 포스팅
 
-    url(r'^(?P<id>\d+)/edit/$', views.post_edit, name='post_edit'), # 포스팅 수정
-    url(r'^(?P<id>\d+)/delete/$', views.post_delete, name='post_delete'), # 포스팅 삭제
-    url(r'^(?P<id>\d+)/comments/$', views.comment_list, name='comment_list'), # 댓글 목록
-    url(r'^(?P<post_id>\d+)/comments/(?P<id>\d+)/edit/$', views.comment_edit, name='comment_edit'), # 댓글 수정
-    url(r'^(?P<post_id>\d+)/comments/(?P<id>\d+)/delete/$', views.comment_delete, name='comment_delete'), # 댓글 삭제
+    url(r'^(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'), # 포스팅 수정
+    url(r'^(?P<pk>\d+)/delete/$', views.post_delete, name='post_delete'), # 포스팅 삭제
+    url(r'^(?P<pk>\d+)/comments/$', views.comment_list, name='comment_list'), # 댓글 목록
+    url(r'^(?P<pk>\d+)/comments/(?P<id>\d+)/edit/$', views.comment_edit, name='comment_edit'), # 댓글 수정
+    url(r'^(?P<pk>\d+)/comments/(?P<id>\d+)/delete/$', views.comment_delete, name='comment_delete'), # 댓글 삭제
 ]

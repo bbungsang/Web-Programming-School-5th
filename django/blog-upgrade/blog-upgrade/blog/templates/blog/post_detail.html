@@ -4,9 +4,24 @@
   <div class="post">
     <div class="img-wrap">
       <img src="{{ post.photo.url }}">
-    </div>
-    <div class="comment">
-      뿡상 : 안녕 난 민이라고 해, 사진 정말 이쁘다.
+      <div>작성자 : {{ post.author }}</div>
+      <div>좋아요 : {{ post.like_count }}</div>
+      <div class="comment">
+        <h5>댓글 목록</h5>
+        <ul>
+        {% if post.comment_set.all %}
+          {% for comment in post.comment_set.all %}
+          <li>
+            {{ comment.author }} : {{ comment.content }}
+          </li>
+          {% endfor %}
+        {% else %}
+          <li>
+            뿡상 : 안녕 난 민이라고 해, 사진 정말 이쁘다.
+          </li>
+        {% endif %}
+        </ul>
+      </div>
     </div>
   </div>
 {% endblock %}
