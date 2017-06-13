@@ -7,14 +7,7 @@
   <div class="article">
     <li>
       {% for post in post_list %}
-      <div class="photo">
-        <a href="{% url 'post_detail' pk=post.pk %}">
-          <img src="{{ post.photo.url }}">
-        </a>
-      </div>
-      <div class="photo-info">
-        작성자 : {{ post.author }}
-      </div>
+        {% include 'include/post.html' %}
       {% endfor %}
     </li>
   </div>

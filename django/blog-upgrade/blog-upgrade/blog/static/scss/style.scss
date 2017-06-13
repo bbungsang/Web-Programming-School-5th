@@ -1,6 +1,6 @@
 .container {
   width: 100% !important;
-  
+
   .top-wrap {
     width: 100%;
     height: 55px;
@@ -49,19 +49,23 @@
 
     .post {
       width: 100%;
+      height: 500px;
 
-      .img-wrap {
-        width: 700px;
-        margin: 0 auto;
+      .image {
+        width: 60%;
+        height: 500px;
+        float: left;
 
         img {
           padding-top: 10px;
-          width: 700px
+          width: 650px
         }
       }
 
-      .comment {
-
+      .post-info {
+        width: 40%;
+        height: 500px;
+        float: left;
       }
     }
   }
