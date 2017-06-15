@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from . import views # 현재 디렉토리 blog/ 에서 views 파일 임포트
 
+app_name = 'blog'
 urlpatterns = [ # 'urlpatterns' 변수에서만 장고가 url을 탐색함
     url(r'^$', views.post_list), # views 에서 post_list 라는 함수 자체를 호출
 

@@ -1,10 +1,17 @@
 from django.http import HttpResponse
-from django.http import HttpResponseNotFound
+# from django.http import HttpResponseNotFound
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
+from django.urls import reverse
+
+# 자동으로 장고에서 인증에 사용하는 User 모델 클래스를 리턴
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 from .models import Post
 from .form import PostForm
+
 
 def post_list(request):
     posts = Post.objects.all()
@@ -28,11 +35,14 @@ def post_detail(request, pk):
         post = get_object_or_404(Post, pk=pk)
     except Post.DoesNotExist as e:
         # 1. 404 Not found 를 띄어줌
-        return HttpResponseNotFound('Post not found, detail: {}'.format(e))
+        # return HttpResponseNotFound('Post not found, detail: {}'.format(e))
 
         # 2. redirect() 사용
         # post_list view 로 돌아감
         # return redirect('post:post_list')
+
+        url = reverse('post:post_list')
+        return HttpResponseRedirect(url)
 
     # request에 대해 response를 돌려줄 때는 HttpResponse나 render를 사용
     # template를 사용하려면 render()를 사용한다.
@@ -59,14 +69,29 @@ def post_detail(request, pk):
 
 def post_create(request):
     if request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('post_detail', pk=post.pk)
-            # 이 처럼 뷰 이름과 인자를 넘겨주면 알아서 reverse() 실행
+        user = User.objects.first()
+        post = Post.objects.create(
+            author=user,
+            # 'photo'는 POST 요쳥시 input[type="file"]이 가진 name 속성
+            photo=request.FILES['photo'],
+        )
+
+        # comment가 있으면 comment를 없으면 빈 값을 가져온다.
+        comment_string = request.POST.get('comment', '')
+
+        # 빈 문자열 ''이나 None 모두 False로 평가되므로
+        # if not 으로 댓글로 쓸 내용 또는 comment키가 전달되지 않았음을 검사 가능
+        if comment_string:
+            post.comment_set.create(
+                author=user,
+                content=comment_string,
+            )
+
+        return redirect('blog:post_detail', pk=post.pk)
+
     else:
-        form = PostForm()
+        # post/post_create.html을 render해서 리턴
+        return render(request, 'blog/post_create.html')
 
     return render(request, 'blog/post_create.html', {'form': form})
 
@@ -81,6 +106,7 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
+
     return render(request, 'blog/post_create.html', {'form': form})
 
 def post_delete(request, pk):
