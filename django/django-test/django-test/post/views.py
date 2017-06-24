@@ -17,38 +17,22 @@ def post_list(request):
 
 def post_create(request):
     if request.method == 'POST':
-        form = PostForm(data=request.POST, files=request.FILES)
-
+        form = PostForm(data=request.POST)
         if form.is_valid():
-            form.check_save(author=request.user)
-            form.save()
+            # comment = form.cleaned_data['comment']
+            # Post.objects.create(
+            #     author=request.user,
+            #     comment=comment,
+            # )
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
             return redirect('post:post_list')
     else:
+        # else 는 폼에 대한 에러를 검출하기 위해 사용
+        # 검증을 위해서 폼을 사용
         form = PostForm()
-        context = {
-            'form': form,
-        }
-        return render(request, 'post/post_create.html', context)
-
-
-def post_modify(request, post_pk):
-    post = get_object_or_404(Post, pk=post_pk)
-    if request.method == 'POST':
-        form = PostForm(data=request.POST, files=request.FILES, instance=post)
-        if form.is_valid():
-            form.check_save()
-            form.save()
-        return redirect('post:post_list')
-    else:
-        form = PostForm()
-        context = {
-            'form': form,
-        }
-        return render(request, 'post/post_create.html', context)
-
-
-def post_delete(request, post_pk):
-    post = get_object_or_404(Post, pk=post_pk)
-    if request.method == "POST":
-        post.delete()
-    return redirect('post:post_list')
+    context = {
+        'form': form,
+    }
+    return render(request, 'post/post_create.html', context)
