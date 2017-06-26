@@ -23,9 +23,19 @@
   <div class="post-bottom">
     <div class="post-btn-container clearfix">
       <div class="btn-left">
-        <a href="#">
-          <img src="{% static 'images/post_like.png' %}" alt="">
-        </a>
+
+        <!-- Post Like & Unlike -->
+        <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}" method="POST" class="form-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn">
+            {% if user in post.like_users.all %}
+              <img src="{% static 'images/post_like.png' %}" alt="">
+            {% else %}
+              <img src="{% static 'images/post_unlike.png' %}" alt="">
+            {% endif %}
+          </button>
+        </form>
+
         <a href="#">
           <img src="{% static 'images/post_comment.png' %}" alt="">
         </a>

@@ -12,4 +12,6 @@ urlpatterns = [
 
     # comment
 
+    # like & unlike
+    url(r'^(?P<post_pk>\d+)/like-toggle/$', views.post_like_toggle, name='post_like_toggle')
 ]
