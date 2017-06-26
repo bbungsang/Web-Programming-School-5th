@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from post.forms.post import PostForm
+from post.forms import CommentForm
 from post.models import Post
 
 
@@ -8,6 +9,7 @@ def post_list(request):
     posts = Post.objects.all()
     context = {
         'posts': posts,
+        'comment_form': CommentForm(),
     }
     return render(request, 'post/post_list.html', context)
 
@@ -24,11 +26,13 @@ def post_create(request):
     if request.method == 'POST':
         form = PostForm(data=request.POST, files=request.FILES)
         if form.is_valid():
+
             # post = form.save(commit=False)
             # post.author = request.user
             # post.save()
 
             post = form.save(author=request.user)
+            post.save()
 
             return redirect('post:post_detail', post_pk=post.pk)
     else:

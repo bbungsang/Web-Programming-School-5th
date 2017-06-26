@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^delete/(?P<post_pk>\d+)/$', views.post_delete, name='post_delete'),
 
     # comment
+    url(r'^(?P<post_pk>\d+)/comment-create/$', views.comment_create, name='comment_create'),
 
     # like & unlike
     url(r'^(?P<post_pk>\d+)/like-toggle/$', views.post_like_toggle, name='post_like_toggle')

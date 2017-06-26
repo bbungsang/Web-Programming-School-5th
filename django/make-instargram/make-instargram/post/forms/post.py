@@ -4,10 +4,15 @@ from post.models import Post
 
 
 class PostForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['photo'].required = True
+        if self.instance.my_comment:
+            self.fields['comment'].initial = self.instance.my_comment.content
 
     comment = forms.CharField(
         required=False,
-        widget=forms.TextInput,
+        widget=forms.TextInput
     )
 
     class Meta:
@@ -18,25 +23,23 @@ class PostForm(forms.ModelForm):
         )
 
     def save(self, **kwargs):
-
         commit = kwargs.get('commit', True)
         author = kwargs.pop('author', None)
 
-        if not self.instance.pk:
+        if not self.instance.pk or isinstance(author, User):
             self.instance.author = author
-
         instance = super().save(**kwargs)
 
         comment_string = self.cleaned_data['comment']
-
-        if commit and instance.my_comment:
-            instance.my_comment.content = comment_string
-            instance.my_comment.save()
-        else:
-            Post.objects.create(
-                post=instance,
-                author=author,
-                content=comment_string,
-            )
+        if commit and comment_string:
+            if instance.my_comment:
+                instance.my_comment.content = comment_string
+                instance.my_comment.save()
+            else:
+                instance.my_comment = Comment.objects.create(
+                    post=instance,
+                    author=instance.author,
+                    content=comment_string
+                )
             instance.save()
         return instance

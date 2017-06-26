@@ -48,16 +48,34 @@
       </div>
     </div>
     <p class="comment">
-      <span>좋아요 {{ post.like_users.count }}개</span>
+      {% if post.like_count == 0 %}
+        처음으로 좋아요를 눌러보세요.
+      {% else %}
+        {% for user in post.like_users.all %}
+            {{ user }},
+        {% endfor %}
+        님이 좋아합니다.
+      {% endif %}
     </p>
     <div class="post-comment-container">
-    {{ post.my_comment }}
+      {% if post.my_comment %}
+        {{ post.my_comment }}
+      {% endif %}
     {% for comment in post.comment_set.all %}
         {% if comment != post.my_comment %}
+          <p>
             {{ comment.author }}
             {{ comment.content }}
+          </p>
         {% endif %}
     {% endfor %}
+    </div>
+    <div class="comment-form">
+      <form action="{% url 'post:comment_create' post_pk=post.pk %}" method="POST">
+        {% csrf_token %}
+        {{ comment_form }}
+        <button type="submit">댓글등록</button>
+      </form>
     </div>
     <p class="created">{{ post.created_date }}</p>
   </div>
