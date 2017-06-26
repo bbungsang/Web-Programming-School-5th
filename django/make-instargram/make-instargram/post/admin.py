@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from post.models import Post
+
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['id', 'author', 'photo']
+
+admin.site.register(Post, PostAdmin)
