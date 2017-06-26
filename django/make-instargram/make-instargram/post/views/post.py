@@ -1,15 +1,36 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from post.forms.post import PostForm
 from post.forms import CommentForm
 from post.models import Post, Tag
 
 
-def post_list(request):
+def post_list_original(request):
     posts = Post.objects.all()
     context = {
         'posts': posts,
         'comment_form': CommentForm(),
+    }
+    return render(request, 'post/post_list.html', context)
+
+
+def post_list(request):
+    all_posts = Post.objects.all()
+    p = Paginator(all_posts, 3)
+    page_num = request.GET.get('page')
+
+    try:
+        posts = p.page(page_num)
+
+    except PageNotAnInteger:
+        posts = p.page(1)
+    except EmptyPage:
+        posts = p.page(p.num_pages)
+
+    context = {
+        'posts': posts,
+        'comment_form': CommentForm(auto_id=False),
     }
     return render(request, 'post/post_list.html', context)
 
