@@ -59,15 +59,11 @@
     </p>
     <div class="post-comment-container">
       {% if post.my_comment %}
-        {{ post.author }}
-        {{ post.my_comment.content }}
+        {% include 'include/post_comment.html' with comment=post.my_comment style='red' %}
       {% endif %}
     {% for comment in post.comment_set.all %}
         {% if comment != post.my_comment %}
-          <p>
-            {{ comment.author }}
-            {{ comment.content }}
-          </p>
+          {% include 'include/post_comment.html' %}
         {% endif %}
     {% endfor %}
     </div>

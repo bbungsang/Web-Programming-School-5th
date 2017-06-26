@@ -14,5 +14,8 @@ urlpatterns = [
     url(r'^(?P<post_pk>\d+)/comment-create/$', views.comment_create, name='comment_create'),
 
     # like & unlike
-    url(r'^(?P<post_pk>\d+)/like-toggle/$', views.post_like_toggle, name='post_like_toggle')
+    url(r'^(?P<post_pk>\d+)/like-toggle/$', views.post_like_toggle, name='post_like_toggle'),
+
+    # tag
+    url(r'^tag/(?P<tag_name>\w+)/$', views.hashtag_post_list, name='hashtag_post_list'),
 ]

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from post.forms.post import PostForm
 from post.forms import CommentForm
-from post.models import Post
+from post.models import Post, Tag
 
 
 def post_list(request):
@@ -77,5 +77,19 @@ def post_like_toggle(request, post_pk):
         post_like.delete()
 
     return redirect('post:post_detail', post_pk=post.pk)
+
+
+def hashtag_post_list(request, tag_name):
+    tag = get_object_or_404(Tag, name=tag_name)
+
+    posts = Post.objects.filter(my_comment__tags=tag)
+    posts_count = posts.count()
+
+    context = {
+        'tag': tag,
+        'posts': posts,
+        'posts_count': posts_count,
+    }
+    return render(request, 'post/hashtag_post_list.html', context)
 
 
