@@ -59,7 +59,8 @@
     </p>
     <div class="post-comment-container">
       {% if post.my_comment %}
-        {{ post.my_comment }}
+        {{ post.author }}
+        {{ post.my_comment.content }}
       {% endif %}
     {% for comment in post.comment_set.all %}
         {% if comment != post.my_comment %}
