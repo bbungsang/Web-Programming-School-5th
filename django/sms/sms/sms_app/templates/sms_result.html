@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+    <li>보낸 사람 : {{ sms.from_num }}</li>
+    <li>받는 사람 : {{ sms.to_num }}</li>
+    <li>내용 : {{ sms.content }}</li>
+</ul>
+{% endblock %}
