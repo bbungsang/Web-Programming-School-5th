@@ -30,6 +30,7 @@ MEDIA_URL = '/media/'
 
 # Custom User
 AUTH_USER_MODEL = 'member.User'
+LOGIN_URL = 'member:login'
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -50,11 +51,35 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Applications
     'post',
     'member',
 
+    # plug-in
     'django_extensions',
+
+    # OAuth
+    'django.contrib.sites', # 장고에서 기본으로 제공해주는 앱으로서, 같은 엔진을 쓰지만 여러 개의 도매인을 사용할 수 있도록 함, allauth 가 django sites 를 사용하여 개발하도록 가졍하였기 때문에 반드시 추가해야할 부분이다.
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.naver',
+
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend', # 인증을 처리하는 기본 백엔드
+    'allauth.account.auth_backends.AuthenticationBackend', # 추가 인증 백엔드
+]
+
+# default SITE id, 등록하지 않으면 매 요청 시에 host 명의 Site 인스턴스를 찾는다.
+SITE_ID = 1
+
+# 이메일 확인 제거 아니면 직접 SMTP 설정을 해야한다.
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

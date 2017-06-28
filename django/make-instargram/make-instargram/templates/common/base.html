@@ -44,12 +44,8 @@
 					<a href="{% url 'post:post_create' %}" class="btn" style="float:left; margin-top: -7px;">사진올리기</a>
 					<a href="#" class="btn">로그아웃</a>
 					{% else %}
-					<form action="{% url 'member:login' %}" method="POST" class="form-inline-login">
-						{% csrf_token %}
-						{{ login_form }}
-						<button type="submit" class="btn">로그인</button>
-						<a href="{% url 'member:signup' %}" class="btn">회원가입</a>
-					</form>
+					<a href="{% url 'member:login' %}" class="btn">로그인</a>
+					<a href="{% url 'member:signup' %}" class="btn">회원가입</a>
 					{% endif %}
 				</div>
 			</nav>
