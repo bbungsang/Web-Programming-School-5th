@@ -18,25 +18,27 @@ def profile(request):
 
 def login(request):
 
-    # if request.method == 'POST':
-    #     form = LoginForm(data=request.POST)
-    #     print(form.is_valid())
-    #     if form.is_valid():
-    #         user = form.cleaned_data.get('user')
-    #         django_login(request, user)
-    #
-    #         return redirect('post:post_list')
-    #
-    # else:
-    #     if request.user.is_authenticated:
-    #         return redirect('post:post_list')
-    #     form = LoginForm()
-    # context = {
-    #     'form': form,
-    # }
-    #
-    # return render(request, 'member/login.html', context)
+    if request.method == 'POST':
+        form = LoginForm(data=request.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            user = form.cleaned_data.get('user')
+            django_login(request, user)
 
+            return redirect('post:post_list')
+
+    else:
+        if request.user.is_authenticated:
+            return redirect('post:post_list')
+        form = LoginForm()
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'member/login.html', context)
+
+
+def allauth_login(request):
     # def __init__(self, *args, **kwargs):
     #     self.request = kwargs.pop('request', None)
     #     super(LoginForm, self).__init__(*args, **kwargs)
@@ -56,12 +58,18 @@ def login(request):
         providers.append(provider)
         print(providers)
 
-    return auth_login(request,
-                      authentication_form=LoginForm,
-                      template_name='member/login.html',
+    # return auth_login(request,
+    #                   authentication_form=LoginForm,
+    #                   template_name='member/allauth_login.html',
+    #
+    #                   # extra_context 를 통해서 추가 필요한 context 를 넘긴다.
+    #                   extra_context={'providers': providers})
 
-                      # extra_context 를 통해서 추가 필요한 context 를 넘긴다.
-                      extra_context={'providers': providers})
+    context = {
+        'form': LoginForm,
+        'providers': providers,
+    }
+    return render(request, 'member/allauth_login.html', context)
 
 
 def signup(request):

@@ -1,0 +1,29 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+{% load socialaccount %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <button type="submit">로그인</button>
+</form>
+
+<ul>
+    {% for provider in providers %}
+    <li>
+        {% if provider.social_app %}
+            <!-- provider_login_url 은 커스텀 템플릿 태그 -->
+            <a href="{% provider_login_url provider.id %}">
+                {{ provider.name }}
+            </a>
+        {% else %}
+            <a href="#">
+                Provider {{ provider.name }} 설정이 필요합니다.
+            </a>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

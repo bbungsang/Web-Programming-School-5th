@@ -10,13 +10,4 @@
     <table>{{ form.as_table }}</table>
     <button type="submit">로그인</button>
 </form>
-
-<ul>
-    {% for provider in providers %}
-    <li>
-        {{ provider }}
-        {{ provider.social_app }}
-    </li>
-{% endfor %}
-</ul>
 {% endblock %}

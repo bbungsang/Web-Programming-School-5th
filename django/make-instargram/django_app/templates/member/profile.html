@@ -1,0 +1,15 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <h2>{{ user }}'s Profile</h2>
+
+    <ul>
+        <li>username: {{ user.username }}</li>
+        <li>email: {{ user.email }}</li>
+        <li>date_joined: {{ user.date_joined }}</li>
+    </ul>
+
+    <!-- user 와 socialaccount 는 1:N 의 관계 -->
+    <!-- user 에서 socialaccount 를 역참조하여 첫번째 레코드에서 get_avatar_url() 을 실행하여 프로필 사진 획득 -->
+    <img src="{{ user.socialaccount_set.all.first.get_avatar_url }}" />
+{% endblock %}
