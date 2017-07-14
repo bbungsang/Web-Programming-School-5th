@@ -42,7 +42,7 @@
 				<div>
 					{% if user.is_authenticated %}
 					<a href="{% url 'post:post_create' %}" class="btn" style="float:left; margin-top: -7px;">사진올리기</a>
-					<a href="#" class="btn">로그아웃</a>
+					{{ user }} <a href="#" class="btn">로그아웃</a>
 					{% else %}
 					<a href="{% url 'member:login' %}" class="btn">로그인</a>
 					<a href="{% url 'member:signup' %}" class="btn">회원가입</a>

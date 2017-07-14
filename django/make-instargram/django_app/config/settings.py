@@ -9,11 +9,12 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
+import json
 import os
 
 # root directory 설정
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(BASE_DIR)
 
 # templates 설정
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
@@ -32,9 +33,20 @@ MEDIA_URL = '/media/'
 AUTH_USER_MODEL = 'member.User'
 LOGIN_URL = 'member:login'
 
+# Facebook
+FACEBOOK_APP_ID = '448444942187343'
+
+CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
+API_SECRET_KEYS = os.path.join(CONFIG_SECRET_DIR, 'api_secret_keys.json')
+api_secret_keys = json.loads(open(API_SECRET_KEYS).read())
+
+FACEBOOK_SECRET_CODE = api_secret_keys
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_fmn3e$&m^t#zre^k7uw&dem&0pg03v_b1(pa%zrdhb5f=2ro+'
+SECRET_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'secret_common.json')
+secret_common = json.loads(open(SECRET_COMMON_FILE).read())
+SECRET_KEY = secret_common['django']['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -109,6 +121,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # Custom context processors
+                'utils.context_processors.facebook_info',
             ],
         },
     },
@@ -156,3 +171,5 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+SITE_URL = 'http://localhost:8080'

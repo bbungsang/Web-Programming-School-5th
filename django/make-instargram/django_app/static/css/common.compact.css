@@ -8,6 +8,8 @@
 
 .btn-primary { background-color: #3897f0; color: white; }
 
+.btn-kakao { background-color: #FFCD12; color: brown; }
+
 .field-wrapper { margin-bottom: 10px; }
 
 .field-wrapper ul.errors { font-size: 11px; color: red; font-weight: bold; padding-left: 5px; }
