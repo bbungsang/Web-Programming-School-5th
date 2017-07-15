@@ -10,9 +10,18 @@
     <button type="submit">로그인</button>
 </form>
 
-<a href="https://www.facebook.com/v2.9/dialog/oauth?client_id={{ facebook_app_id }}&redirect_uri={{ site_url }}{% url 'member:facebook_login' %}">
-  <button class="btn btn-primary">페이스북 로그인</button>
-</a>
+<ul>
+    <li>
+        <a href="https://www.facebook.com/v2.9/dialog/oauth?client_id={{ facebook_app_id }}&redirect_uri={{ site_url }}{% url 'member:facebook_login' %}">
+            <button class="btn btn-primary">페이스북 로그인</button>
+        </a>
+    </li>
+    <li>
+        <a href="https://kauth.kakao.com/oauth/authorize?client_id={{ kakao_app_id }}&redirect_uri={{ redirect_uri }}&response_type=code">
+            <button class="btn btn-kakao">카카오 로그인</button>
+        </a>
+    </li>
+</ul>
 
 <ul>
     {% for provider in providers %}

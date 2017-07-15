@@ -40,7 +40,12 @@ CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
 API_SECRET_KEYS = os.path.join(CONFIG_SECRET_DIR, 'api_secret_keys.json')
 api_secret_keys = json.loads(open(API_SECRET_KEYS).read())
 
-FACEBOOK_SECRET_CODE = api_secret_keys
+FACEBOOK_SECRET_CODE = api_secret_keys['facebook']['secret_key']
+
+# kakao
+KAKAO_APP_ID = '60aa0e5b110a620b9df6696714851e0c'
+KAKAO_ADMIN_KEY = api_secret_keys['kakao']['admin_key']
+KAKAO_CLIENT_SECRET = api_secret_keys['kakao']['client_secret']
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -86,7 +91,7 @@ INSTALLED_APPS = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend', # 인증을 처리하는 기본 백엔드
-    'allauth.account.auth_backends.AuthenticationBackend', # 추가 인증 백엔드
+    # 'allauth.account.auth_backends.AuthenticationBackend', # 추가 인증 백엔드
 ]
 
 # default SITE id, 등록하지 않으면 매 요청 시에 host 명의 Site 인스턴스를 찾는다.
@@ -124,6 +129,7 @@ TEMPLATES = [
 
                 # Custom context processors
                 'utils.context_processors.facebook_info',
+                'utils.context_processors.kakao_info',
             ],
         },
     },
@@ -173,3 +179,4 @@ USE_L10N = True
 USE_TZ = True
 
 SITE_URL = 'http://localhost:8080'
+KAKAO_REDIRECT_URI = SITE_URL + '/member/login/kakao'
