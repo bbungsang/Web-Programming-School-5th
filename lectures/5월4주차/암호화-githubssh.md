@@ -7,4 +7,15 @@
 - SSH 접속을 시도하면 SSH Client가 로컬 머신의 비공개키와 원격 머신의 비공개키를 비교해서 둘이 일치하는 지를 확인한다.
 
 ## SSH Key 만들기
-GitHub settings ➜ [Personal settings]SSH and GPG keys ➜ 
+[터미널] <br>
+1. 홈 디렉토리에서 `.ssh` 폴더로 이동 (없다면 생성하자 : `mkdir -p ~/.ssh`) <br>
+2. .ssh/ 에서 `ssh-keygen -t rsa -b 4096 -C "bbungsang@gmail.com"` ➜ id_rsa 와 id_rsa.pub 의 두 파일이 생성된 것을 확인할 수 있다. <br>
+3. `cat id_rsa.pub` 을 입력하면, ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5hzEJVVCi3g9O91Ft95ipV2HA5fWkuUvz [...] 형태의 공개키를 확인하자.
+<br>
+[깃헙] <br>
+1. GitHub settings ➜ [Personal settings]SSH and GPG keys ➜ New SSH Key 버튼을 클릭한다. <br>
+2. 임의의 title 을 입력하고 터미널을 통해 얻은 공개키를 Key 입력란에 기입한다. <br>
+3. 이제 https 프로토콜이 아닌 ssh 프로토콜을 이용하여 remote add 를 하면된다. <br>
+4. git remote -v 를 입력하면 ssh 형태의 remote 주소를 확인할 수 있다. <br> 
+origin git@github.com:\[...] (fetch) <br>
+origin git@github.com:\[...] (push)
